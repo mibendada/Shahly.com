@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHAHLY — Beauté & Cosmétiques</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A96E; --gold-light:#E8D5B0; --beige:#F5EDE0;
+  --beige-dark:#E8D9C4; --brown:#6B4F3A; --white:#FDFAF6;
+  --text:#2C1E14; --text-light:#7A6355;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+/* ANNOUNCEMENT */
+.ann-banner{position:fixed;top:0;left:0;right:0;z-index:500;background:linear-gradient(135deg,#2C1E14,#4A3020 40%,#C9A96E 70%,#E8D5B0);box-shadow:0 4px 30px rgba(201,169,110,0.4);}
+.ann-inner{display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 50px;position:relative;}
+.ann-sparkle{font-size:1rem;animation:sparkle 1.5s ease-in-out infinite alternate;}
+@keyframes sparkle{from{opacity:0.6;transform:scale(0.9)rotate(-10deg)}to{opacity:1;transform:scale(1.2)rotate(10deg)}}
+.ann-text{text-align:center;}
+.ann-top{font-size:0.58rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(232,213,176,0.9);display:block;}
+.ann-main{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:white;letter-spacing:0.06em;}
+.ann-main em{color:var(--gold);font-style:italic;}
+.ann-sub{font-size:0.6rem;letter-spacing:0.12em;color:rgba(255,255,255,0.75);display:block;margin-top:2px;}
+.ann-pill{background:var(--gold);color:white;padding:4px 12px;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,110,0.5)}50%{box-shadow:0 0 0 8px rgba(201,169,110,0)}}
+.ann-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.5);font-size:1rem;cursor:pointer;}
+
+/* NAV */
+nav{position:fixed;left:0;right:0;z-index:100;padding:14px 50px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,250,246,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--beige-dark);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;letter-spacing:0.3em;color:var(--text);text-decoration:none;cursor:pointer;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{font-size:0.7rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);text-decoration:none;cursor:pointer;transition:color 0.3s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-icons{display:flex;gap:18px;align-items:center;}
+.nav-icon{font-size:1.1rem;color:var(--text-light);cursor:pointer;transition:color 0.3s;position:relative;}
+.nav-icon:hover{color:var(--gold);}
+.cart-count{position:absolute;top:-8px;right:-8px;background:var(--gold);color:white;font-size:0.6rem;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 50px 80px 70px;position:relative;z-index:2;}
+.hero-tag{font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.hero-tag::before{content:'';width:36px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:300;line-height:1.08;margin-bottom:24px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-desc{font-size:0.88rem;font-weight:300;line-height:1.8;color:var(--text-light);max-width:400px;margin-bottom:40px;}
+.hero-cta{display:flex;gap:20px;align-items:center;}
+.btn-primary{background:var(--gold);color:white;padding:14px 36px;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.2s;font-family:'Jost',sans-serif;}
+.btn-primary:hover{background:var(--brown);transform:translateY(-2px);}
+.btn-ghost{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.3s;cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;}
+.btn-ghost:hover{color:var(--gold);}
+.hero-right{position:relative;overflow:hidden;background:var(--beige);}
+.hero-badge{position:absolute;top:28px;right:28px;width:72px;height:72px;border-radius:50%;background:var(--gold);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;text-align:center;line-height:1.4;animation:rotateBadge 12s linear infinite;z-index:2;}
+@keyframes rotateBadge{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-image-area{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
+.hero-card{background:white;padding:24px;box-shadow:0 20px 60px rgba(107,79,58,0.15);width:190px;text-align:center;}
+.hero-card:nth-child(1){animation:float1 4s ease-in-out infinite;}
+.hero-card:nth-child(2){animation:float2 4s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translateX(-30px) translateY(-20px)}50%{transform:translateX(-30px) translateY(-32px)}}
+@keyframes float2{0%,100%{transform:translateX(55px) translateY(28px)}50%{transform:translateX(55px) translateY(16px)}}
+.hero-card img{width:80px;height:80px;object-fit:contain;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;}
+.card-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;color:var(--text);margin-bottom:4px;}
+.card-cat{font-size:0.72rem;color:var(--gold);font-weight:500;}
+
+/* MARQUEE */
+.marquee{background:var(--gold);padding:13px 0;overflow:hidden;}
+.marquee-track{display:flex;gap:50px;white-space:nowrap;animation:marquee 22s linear infinite;}
+.marquee-item{font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:white;display:flex;align-items:center;gap:16px;flex-shrink:0;}
+.marquee-item::before{content:'✦';font-size:0.45rem;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{padding:80px 70px;}
+.section.bg-beige{background:var(--beige);}
+.section.bg-dark{background:var(--text);}
+.section-header{text-align:center;margin-bottom:50px;}
+.section-tag{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.2;}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-line{width:48px;height:1px;background:var(--gold);margin:16px auto 0;}
+
+/* OFFRES */
+.offres-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch;}
+.offre-card{background:var(--beige);padding:36px 28px;text-align:center;border:1px solid transparent;transition:all 0.4s;position:relative;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;}
+.offre-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(107,79,58,0.15);border-color:var(--gold-light);}
+.offre-badge{background:var(--gold);color:white;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;padding:4px 12px;display:inline-block;margin-bottom:18px;}
+.offre-img{width:140px;height:140px;object-fit:contain;margin:0 auto 14px;display:block;}
+.offre-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;margin-bottom:8px;}
+.offre-desc{font-size:0.78rem;color:var(--text-light);line-height:1.7;margin-bottom:18px;font-weight:300;flex:1;}
+.offre-price{font-size:1.2rem;color:var(--brown);font-weight:500;}
+.offre-old{font-size:0.75rem;color:var(--text-light);text-decoration:line-through;}
+.offre-ribbon{position:absolute;top:14px;right:-6px;background:#E8414B;color:white;font-size:0.58rem;padding:3px 12px;letter-spacing:0.1em;font-weight:500;}
+
+/* COLLECTIONS */
+.collections-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.col-card{height:360px;position:relative;overflow:hidden;cursor:pointer;}
+.col-bg{position:absolute;inset:0;transition:transform 0.6s;}
+.col-card:hover .col-bg{transform:scale(1.06);}
+.col-parfum .col-bg{background:linear-gradient(160deg,#2C1E14,#6B4F3A);}
+.col-skincare .col-bg{background:linear-gradient(160deg,#8B6A50,#C9A96E);}
+.col-makeup .col-bg{background:linear-gradient(160deg,#4A3020,#9B7A5A);}
+.col-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;text-align:center;}
+.col-icon{font-size:3.2rem;margin-bottom:14px;opacity:0.9;}
+.col-name{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:white;font-weight:300;margin-bottom:6px;}
+.col-sub{font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:22px;}
+.col-btn{border:1px solid rgba(255,255,255,0.5);color:white;padding:9px 22px;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;background:transparent;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.3s;opacity:0;transform:translateY(10px);}
+.col-card:hover .col-btn{opacity:1;transform:translateY(0);background:rgba(255,255,255,0.15);}
+
+/* PROMO */
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px;position:relative;}
+.promo-grid::before{content:'SHAHLY';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Cormorant Garamond',serif;font-size:10rem;font-weight:300;color:rgba(201,169,110,0.06);letter-spacing:0.2em;pointer-events:none;white-space:nowrap;}
+.promo-tag{font-size:0.6rem;letter-spacing:0.35em;color:var(--gold);margin-bottom:16px;display:block;}
+.promo-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:white;font-weight:300;line-height:1.15;margin-bottom:16px;}
+.promo-title em{font-style:italic;color:var(--gold);}
+.promo-desc{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:30px;font-weight:300;}
+.promo-stats{display:flex;flex-direction:column;gap:22px;position:relative;z-index:1;}
+.promo-stat{border-left:2px solid var(--gold);padding-left:20px;}
+.promo-stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:white;font-weight:300;line-height:1;}
+.promo-stat-label{font-size:0.65rem;letter-spacing:0.18em;color:rgba(255,255,255,0.5);margin-top:4px;}
+
+/* NEWSLETTER */
+.newsletter-inner{max-width:480px;margin:0 auto;text-align:center;}
+.newsletter-form{display:flex;margin-top:32px;border:1px solid var(--beige-dark);background:white;}
+.newsletter-input{flex:1;padding:14px 20px;border:none;outline:none;font-family:'Jost',sans-serif;font-size:0.82rem;color:var(--text);background:transparent;}
+.newsletter-input::placeholder{color:var(--text-light);}
+.newsletter-btn{background:var(--gold);color:white;border:none;padding:14px 24px;cursor:pointer;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;font-family:'Jost',sans-serif;transition:background 0.3s;}
+.newsletter-btn:hover{background:var(--brown);}
+
+/* PRODUCTS PAGE */
+.products-hero{padding:110px 70px 35px;background:var(--beige);text-align:center;position:relative;overflow:hidden;}
+.filter-bar{display:flex;justify-content:center;gap:10px;padding:24px 70px;background:var(--white);border-bottom:1px solid var(--beige-dark);position:sticky;top:60px;z-index:50;flex-wrap:wrap;}
+.filter-btn{padding:8px 22px;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;border:1px solid var(--beige-dark);background:transparent;cursor:pointer;font-family:'Jost',sans-serif;color:var(--text-light);transition:all 0.3s;}
+.filter-btn:hover,.filter-btn.active{background:var(--gold);color:white;border-color:var(--gold);}
+.products-wrap{padding:44px 70px;background:var(--white);}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+
+/* PRODUCT CARD */
+.product-card{background:var(--white);border:1px solid var(--beige-dark);position:relative;overflow:hidden;cursor:pointer;transition:box-shadow 0.4s,transform 0.4s;display:flex;flex-direction:column;}
+.product-card:hover{box-shadow:0 18px 48px rgba(107,79,58,0.16);transform:translateY(-5px);}
+.product-image{height:220px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--beige);}
+.product-image img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform 0.6s;}
+.product-card:hover .product-image img{transform:scale(1.08);}
+.prod-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:white;font-size:0.56rem;padding:3px 9px;letter-spacing:0.12em;text-transform:uppercase;z-index:2;}
+.prod-info{padding:16px;display:flex;flex-direction:column;flex:1;}
+.prod-brand{font-size:0.56rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-light);margin-bottom:2px;}
+.prod-cat{font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text);font-weight:400;margin-bottom:4px;line-height:1.3;}
+.prod-desc{font-size:0.7rem;color:var(--text-light);margin-bottom:11px;font-weight:300;line-height:1.5;flex:1;}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
+.prod-price{font-size:0.95rem;font-weight:500;color:var(--brown);}
+.prod-price span{font-size:0.65rem;font-weight:300;color:var(--text-light);margin-left:2px;}
+.stars{color:var(--gold);font-size:0.68rem;margin-bottom:7px;}
+.add-to-cart{background:var(--text);color:white;border:none;padding:7px 13px;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:background 0.3s;}
+.add-to-cart:hover{background:var(--gold);}
+
+/* CART */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.cart-overlay.open{opacity:1;pointer-events:all;}
+.cart-sidebar{position:fixed;right:-420px;top:0;bottom:0;width:420px;background:var(--white);z-index:201;padding:32px;display:flex;flex-direction:column;transition:right 0.4s cubic-bezier(0.4,0,0.2,1);overflow-y:auto;}
+.cart-sidebar.open{right:0;}
+.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;padding-bottom:16px;border-bottom:1px solid var(--beige-dark);}
+.cart-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;}
+.cart-close{background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text-light);}
+.cart-empty{text-align:center;padding:50px 0;color:var(--text-light);font-size:0.88rem;line-height:2;}
+.cart-item{display:flex;gap:13px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--beige-dark);}
+.cart-item-img{width:62px;height:62px;background:var(--beige);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.cart-item-img img{width:100%;height:100%;object-fit:contain;padding:4px;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-family:'Cormorant Garamond',serif;font-size:0.9rem;margin-bottom:3px;}
+.cart-item-price{font-size:0.8rem;color:var(--gold);font-weight:500;}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:7px;}
+.qty-btn{width:22px;height:22px;border:1px solid var(--beige-dark);background:none;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;color:var(--text-light);transition:all 0.2s;}
+.qty-btn:hover{border-color:var(--gold);color:var(--gold);}
+.qty-num{font-size:0.82rem;font-weight:500;min-width:18px;text-align:center;}
+.cart-promo{font-size:0.72rem;color:var(--brown);background:var(--beige);padding:9px 13px;margin-bottom:13px;line-height:1.5;text-align:center;}
+.cart-footer{margin-top:auto;padding-top:20px;border-top:1px solid var(--beige-dark);}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:16px;}
+.cart-total-label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-light);}
+.cart-total-amount{font-family:'Cormorant Garamond',serif;font-size:1.2rem;}
+.checkout-btn{width:100%;background:var(--gold);color:white;border:none;padding:15px;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:background 0.3s;}
+.checkout-btn:hover{background:var(--brown);}
+
+/* FOOTER */
+footer{background:var(--text);color:rgba(255,255,255,0.7);padding:50px 70px 26px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:50px;margin-bottom:40px;}
+.footer-desc{font-size:0.76rem;line-height:1.8;font-weight:300;margin-bottom:20px;margin-top:12px;}
+.footer-social{display:flex;gap:10px;}
+.social-btn{width:32px;height:32px;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);font-size:0.82rem;transition:all 0.3s;cursor:pointer;text-decoration:none;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+.footer-heading{font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:8px;}
+.footer-links a{font-size:0.76rem;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.3s;font-weight:300;cursor:pointer;}
+.footer-links a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;}
+.footer-copy{font-size:0.7rem;color:rgba(255,255,255,0.4);}
+
+/* PROMO INPUT */
+.promo-row{display:flex;gap:8px;margin-bottom:10px;}
+.promo-input{flex:1;border:1px solid #E8D9C4;padding:9px 12px;font-family:'Jost',sans-serif;font-size:0.78rem;outline:none;border-radius:0;color:#2C1E14;}
+.promo-btn{background:#C9A96E;color:white;border:none;padding:9px 14px;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap;}
+.promo-btn:hover{background:#6B4F3A;}
+.promo-feedback{font-size:0.72rem;padding:7px 10px;margin-bottom:8px;display:none;border-radius:0;}
+.promo-ok{background:#F0F9F0;color:green;border:1px solid #c3e6cb;}
+.promo-err{background:#FFF3F3;color:#E8414B;border:1px solid #f5c6cb;}
+
+/* CHECKOUT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:600;opacity:0;pointer-events:none;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{background:#FDFAF6;width:100%;max-width:500px;max-height:92vh;overflow-y:auto;padding:36px 32px;position:relative;}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:#7A6355;}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;margin-bottom:4px;}
+.modal-sub{font-size:0.76rem;color:#7A6355;margin-bottom:24px;font-weight:300;}
+.recap-box{background:#F5EDE0;padding:14px 16px;margin-bottom:22px;}
+.recap-title{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#C9A96E;margin-bottom:10px;}
+.recap-row{display:flex;justify-content:space-between;font-size:0.76rem;color:#7A6355;margin-bottom:5px;}
+.recap-row b{color:#2C1E14;}
+.recap-total-row{display:flex;justify-content:space-between;padding-top:9px;border-top:1px solid #E8D9C4;margin-top:8px;}
+.recap-total-label{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:#7A6355;}
+.recap-total-amt{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#6B4F3A;font-weight:500;}
+.form-sec{margin-bottom:20px;}
+.form-sec-title{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:#C9A96E;margin-bottom:12px;}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.form-row2.full{grid-template-columns:1fr;}
+.form-grp{display:flex;flex-direction:column;gap:5px;}
+.form-grp label{font-size:0.68rem;color:#7A6355;}
+.form-grp input,.form-grp textarea{border:1px solid #E8D9C4;padding:10px 13px;font-family:'Jost',sans-serif;font-size:0.82rem;color:#2C1E14;background:white;outline:none;transition:border-color 0.3s;border-radius:0;}
+.form-grp input:focus,.form-grp textarea:focus{border-color:#C9A96E;}
+.form-grp textarea{resize:vertical;min-height:60px;}
+.req{color:#E8414B;}
+.pay-box{border:1px solid #C9A96E;padding:13px 16px;display:flex;align-items:center;gap:12px;background:#F7F0E6;margin-bottom:18px;}
+.pay-name{font-size:0.82rem;font-weight:500;color:#2C1E14;}
+.pay-desc{font-size:0.7rem;color:#7A6355;margin-top:2px;}
+.submit-btn{width:100%;background:#C9A96E;color:white;border:none;padding:15px;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:background 0.3s;}
+.submit-btn:hover{background:#6B4F3A;}
+.success-screen{text-align:center;padding:16px 0;display:none;}
+.success-icon{font-size:3.5rem;margin-bottom:14px;}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:10px;}
+.success-msg{font-size:0.82rem;color:#7A6355;line-height:1.8;margin-bottom:24px;}
+@media(max-width:500px){.modal{padding:22px 16px;}.form-row2{grid-template-columns:1fr;}}
+
+/* TOAST */
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:white;padding:12px 24px;font-size:0.76rem;letter-spacing:0.1em;z-index:300;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* WA BUTTON */
+.wa-btn{position:fixed;bottom:26px;right:26px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:400;box-shadow:0 6px 24px rgba(37,211,102,0.5);text-decoration:none;animation:waPulse 2.5s ease-in-out infinite;transition:transform 0.2s;}
+.wa-btn:hover{transform:scale(1.1);}
+@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,0.5)}50%{box-shadow:0 6px 40px rgba(37,211,102,0.8)}}
+
+@media(max-width:768px){
+  nav{padding:12px 18px;} .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-left{padding:44px 22px;} .hero-right{height:260px;}
+  .section{padding:55px 22px;}
+  .offres-grid,.collections-grid{grid-template-columns:1fr;}
+  .products-grid{grid-template-columns:repeat(2,1fr);gap:13px;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:26px;}
+  footer{padding:36px 20px 18px;}
+  .filter-bar{padding:18px 20px;top:55px;}
+  .products-hero{padding:40px 22px 28px;}
+  .products-wrap{padding:36px 22px;}
+  .promo-grid{grid-template-columns:1fr;gap:36px;}
+  .cart-sidebar{width:100%;right:-100%;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✦ Produit ajouté au panier</div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <div class="cart-title">Mon Panier</div>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div id="cartItems"><div class="cart-empty">🛒<br><br>Votre panier est vide</div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-promo" id="cartPromo"></div>
+    <div class="promo-row">
+      <input class="promo-input" id="promoInput" type="text" placeholder="Code promo (ex: SHAHLY5)" />
+      <button class="promo-btn" onclick="applyPromo()">Appliquer</button>
+    </div>
+    <div class="promo-feedback" id="promoFeedback"></div>
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cartTotal">0 MAD</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Passer ma commande &rarr;</button>
+  </div>
+</div>
+
+<!-- ANNOUNCEMENT -->
+<div class="ann-banner" id="annBanner">
+  <div class="ann-inner">
+    <span class="ann-sparkle">✨</span>
+    <div class="ann-text">
+      <span class="ann-top">✦ Ouverture Prochaine ✦</span>
+      <span class="ann-main">Venez nous rendre visite — <em>SHAHLY</em> ouvre ses portes !</span>
+      <span class="ann-sub">📍 Yasmine Mall · Centre Ville · Kénitra &nbsp;|&nbsp; ⏰ 11h–23h (Ven. 15h–23h)</span>
+    </div>
+    <div class="ann-pill">Bientôt</div>
+    <span class="ann-sparkle">✨</span>
+    <button class="ann-close" onclick="closeBanner()">✕</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="showPage('home')">SHA<span>H</span>LY</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">Accueil</a></li>
+    <li><a onclick="showPage('products')" id="nav-products">Produits</a></li>
+    <li><a onclick="showPage('offres-page')" id="nav-offres-page">Offres Spéciales</a></li>
+    <li><a onclick="document.querySelector('footer').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">Contact</a></li>
+  </ul>
+  <div class="nav-icons">
+    <span class="nav-icon">🔍</span>
+    <span class="nav-icon" onclick="openCart()" style="position:relative">🛒<span class="cart-count" id="cartCount">0</span></span>
+  </div>
+</nav>
+
+<!-- ========== HOME PAGE ========== -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Nouvelle Collection 2026</div>
+      <h1 class="hero-title">La <em>beauté</em><br>à l'état pur</h1>
+      <p class="hero-desc">Découvrez notre sélection exclusive de cosmétiques et soins de beauté, soigneusement choisis pour sublimer votre éclat naturel.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('products')">Découvrir la boutique</button>
+        <button class="btn-ghost" onclick="document.getElementById('collections').scrollIntoView({behavior:'smooth'})">Nos Collections →</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-badge">Livraison<br>Gratuite<br>✦</div>
+      <div class="hero-image-area">
+        <div class="hero-card">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/v1777637281/112592038527_OM_F_u9h7zq.jpg" alt="Bare Vanilla" />
+          <div class="card-name">Bare Vanilla</div>
+          <div class="card-cat">Victoria's Secret</div>
+        </div>
+        <div class="hero-card">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/4e361960-0fbc-45d5-98fd-112f1c1df348-1000x1000-5EKD9V5MVkCxp32F5YrQJUXck4AY50sc9PuMP2aN_zqzqqp" alt="Coffret Ibraq" />
+          <div class="card-name">Coffret Musc Ibraq</div>
+          <div class="card-cat">Ibraq</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span class="marquee-item">Livraison Gratuite dès 500 Dhs</span>
+      <span class="marquee-item">Produits 100% Authentiques</span>
+      <span class="marquee-item">Remise -5% dès 1000 Dhs</span>
+      <span class="marquee-item">Service Client 7j/7</span>
+      <span class="marquee-item">Yasmine Mall · Kénitra</span>
+      <span class="marquee-item">Livraison Gratuite dès 500 Dhs</span>
+      <span class="marquee-item">Produits 100% Authentiques</span>
+      <span class="marquee-item">Remise -5% dès 1000 Dhs</span>
+      <span class="marquee-item">Service Client 7j/7</span>
+      <span class="marquee-item">Yasmine Mall · Kénitra</span>
+    </div>
+  </div>
+
+  <section class="section" id="offres">
+    <div class="section-header">
+      <span class="section-tag">✦ Exclusivités</span>
+      <h2 class="section-title">Coffrets & <em>Offres Spéciales</em></h2>
+      <div class="section-line"></div>
+      <p style="font-size:0.8rem;color:var(--text-light);margin-top:14px;font-weight:300;">Des offres pensées pour vous faire plaisir ou offrir un cadeau inoubliable</p>
+    </div>
+    <div class="offres-grid">
+      <div class="offre-card">
+        <div class="offre-ribbon">Exclusif</div>
+        <span class="offre-badge">Coffret Luxe</span>
+        <img class="offre-img" src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/4e361960-0fbc-45d5-98fd-112f1c1df348-1000x1000-5EKD9V5MVkCxp32F5YrQJUXck4AY50sc9PuMP2aN_zqzqqp" alt="Coffret Musc Ibraq" />
+        <div class="offre-name">Coffret Musc Ibraq — 12 Miniatures</div>
+        <div class="offre-desc">12 miniatures 20ml — tous les parfums Ibraq dans un écrin précieux</div>
+        <div class="offre-price">1800 <span style="font-size:0.75rem">Dhs</span></div>
+        <div style="display:flex;gap:10px;margin-top:auto;padding-top:16px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-primary" style="font-size:0.62rem;padding:11px 18px;" onclick="addToCart(30)">+ Panier</button>
+          <button class="btn-ghost" style="font-size:0.62rem;padding:11px 18px;border:1px solid var(--beige-dark);" onclick="showPage('products','parfum')">Voir produits</button>
+        </div>
+      </div>
+      <div class="offre-card">
+        <div class="offre-ribbon">Bestseller</div>
+        <span class="offre-badge">Parfum VS</span>
+        <img class="offre-img" src="https://res.cloudinary.com/dsit1vh4p/image/upload/v1777637304/1777593813803_rovhgv.png" alt="Into The Night" />
+        <div class="offre-name">Into The Night — Fine Fragrance Mist</div>
+        <div class="offre-desc">Brume parfumée Victoria's Secret — senteur envoûtante, longue tenue. 250ml</div>
+        <div class="offre-price">220 <span style="font-size:0.75rem">Dhs</span></div>
+        <div style="display:flex;gap:10px;margin-top:auto;padding-top:16px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-primary" style="font-size:0.62rem;padding:11px 18px;" onclick="addToCart(2)">+ Panier</button>
+          <button class="btn-ghost" style="font-size:0.62rem;padding:11px 18px;border:1px solid var(--beige-dark);" onclick="showPage('products','parfum')">Voir produits</button>
+        </div>
+      </div>
+      <div class="offre-card">
+        <div class="offre-ribbon">-15 Dhs</div>
+        <span class="offre-badge">Soin Corps</span>
+        <img class="offre-img" src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/130026583_vdrkxz" alt="Dove Brown Sugar" />
+        <div class="offre-name">Dove Brown Sugar & Coconut Butter Scrub</div>
+        <div class="offre-desc">Gommage corps nourrissant au sucre brun et beurre de coco. 298g</div>
+        <div class="offre-price">150 <span style="font-size:0.75rem">Dhs</span></div>
+        <div style="display:flex;gap:10px;margin-top:auto;padding-top:16px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-primary" style="font-size:0.62rem;padding:11px 18px;" onclick="addToCart(5)">+ Panier</button>
+          <button class="btn-ghost" style="font-size:0.62rem;padding:11px 18px;border:1px solid var(--beige-dark);" onclick="showPage('products','corps')">Voir produits</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="collections">
+    <div class="section-header">
+      <span class="section-tag">✦ Explorer</span>
+      <h2 class="section-title">Nos <em>Collections</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="collections-grid">
+      <div class="col-card col-parfum" onclick="showPage('products','parfum')">
+        <div class="col-bg"></div>
+        <div class="col-overlay">
+          <span class="col-icon">🌺</span>
+          <div class="col-name">Parfums & Brumes</div>
+          <div class="col-sub">Victoria's Secret · Ibraq</div>
+          <button class="col-btn">Découvrir</button>
+        </div>
+      </div>
+      <div class="col-card col-skincare" onclick="showPage('products','corps')">
+        <div class="col-bg"></div>
+        <div class="col-overlay">
+          <span class="col-icon">✨</span>
+          <div class="col-name">Soins Corps</div>
+          <div class="col-sub">Dove · Gommages & Soins</div>
+          <button class="col-btn">Découvrir</button>
+        </div>
+      </div>
+      <div class="col-card col-makeup" onclick="showPage('products','dentaire')">
+        <div class="col-bg"></div>
+        <div class="col-overlay">
+          <span class="col-icon">🦷</span>
+          <div class="col-name">Soin Dentaire</div>
+          <div class="col-sub">Crest 3D Whitestrips</div>
+          <button class="col-btn">Découvrir</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-dark">
+    <div class="promo-grid">
+      <div>
+        <span class="promo-tag">✦ Notre Engagement</span>
+        <h2 class="promo-title">Beauté <em>Authentique</em>,<br>Prix Accessibles</h2>
+        <p class="promo-desc">Chez SHAHLY, nous sélectionnons chaque produit avec soin pour vous garantir authenticité et qualité. Victoria's Secret, Dove, Crest, Ibraq — les meilleures marques à portée de main.</p>
+        <button class="btn-primary" onclick="showPage('products')">Explorer la boutique</button>
+      </div>
+      <div class="promo-stats">
+        <div class="promo-stat">
+          <div class="promo-stat-num">100%</div>
+          <div class="promo-stat-label">Produits Authentiques</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">4</div>
+          <div class="promo-stat-label">Marques Premium</div>
+        </div>
+        <div class="promo-stat">
+          <div class="promo-stat-num">24h</div>
+          <div class="promo-stat-label">Livraison Express</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-beige">
+    <div class="newsletter-inner">
+      <span class="section-tag">✦ Restez Informé</span>
+      <h2 class="section-title">Rejoignez la <em>communauté</em></h2>
+      <div class="section-line"></div>
+      <p style="font-size:0.8rem;color:var(--text-light);margin-top:14px;font-weight:300;">Recevez nos offres exclusives, nouveautés et conseils beauté</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="votre@email.com" />
+        <button class="newsletter-btn">S'abonner</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end page-home -->
+
+<!-- ========== PRODUCTS PAGE ========== -->
+<div class="page" id="page-products">
+  <div class="products-hero">
+    <span class="section-tag">✦ Notre Sélection</span>
+    <h1 class="section-title" style="font-size:2.2rem;">Tous nos <em>Produits</em></h1>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts('all',this)">Tout</button>
+    <button class="filter-btn" onclick="filterProducts('parfum',this)">Parfums & Brumes</button>
+    <button class="filter-btn" onclick="filterProducts('corps',this)">Soins Corps</button>
+    <button class="filter-btn" onclick="filterProducts('dentaire',this)">Soin Dentaire</button>
+    <button class="filter-btn" onclick="filterProducts('ibraq',this)">Ibraq</button>
+  </div>
+
+  <div class="products-wrap">
+    <div class="products-grid" id="productsGrid">
+
+      <!-- ===== VICTORIA'S SECRET ===== -->
+      <div class="product-card" data-cat="parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/v1777637281/112592038527_OM_F_u9h7zq.jpg" alt="Bare Vanilla Fragrance Mist" />
+          <div class="prod-badge">VS</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Victoria's Secret</div>
+          <div class="prod-cat">Brume Parfumée</div>
+          <div class="prod-name">Bare Vanilla Fragrance Mist</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Brume parfumée vanillée, douce et enveloppante. 250ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">199 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(1)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/v1777637304/1777593813803_rovhgv.png" alt="Into The Night Fine Fragrance Mist" />
+          <div class="prod-badge">VS</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Victoria's Secret</div>
+          <div class="prod-cat">Brume Parfumée</div>
+          <div class="prod-name">Into The Night Fine Fragrance Mist</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Brume parfumée mystérieuse et envoûtante, notes florales et musquées. 250ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">220 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(2)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== DOVE ===== -->
+      <div class="product-card" data-cat="corps">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/file_00000000c1d471fd844ee606aefbfc8a_kzo9kk" alt="Dove White Peach & Crushed Rice Body Scrub" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Dove</div>
+          <div class="prod-cat">Gommage Corps</div>
+          <div class="prod-name">White Peach & Crushed Rice Body Scrub</div>
+          <div class="stars">★★★★☆</div>
+          <div class="prod-desc">Gommage doux à la pêche blanche et au riz concassé, peau soyeuse. 298g</div>
+          <div class="prod-footer">
+            <div class="prod-price">140 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(3)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="corps">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/130026583_vdrkxz" alt="Dove Brown Sugar & Coconut Butter Body Scrub" />
+          <div class="prod-badge">Bestseller</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Dove</div>
+          <div class="prod-cat">Gommage Corps</div>
+          <div class="prod-name">Brown Sugar & Coconut Butter Body Scrub</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Gommage nourrissant au sucre brun et beurre de coco, peau veloutée. 298g</div>
+          <div class="prod-footer">
+            <div class="prod-price">150 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(5)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="corps">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/file_00000000d71871fda43c2cb844bf66f3_l9n3fd" alt="Dove Himalayan Salt & Rose Oil Body Scrub" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Dove</div>
+          <div class="prod-cat">Gommage Corps</div>
+          <div class="prod-name">Himalayan Salt & Rose Oil Body Scrub</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Gommage au sel de l'Himalaya et à l'huile de rose, peau lumineuse. 298g</div>
+          <div class="prod-footer">
+            <div class="prod-price">155 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(6)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CREST ===== -->
+      <div class="product-card" data-cat="dentaire">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/1517853-894__1_dmifkw" alt="Crest 3D Whitestrips Bande Unitaire" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Crest</div>
+          <div class="prod-cat">Soin Dentaire</div>
+          <div class="prod-name">Crest 3D Whitestrips — Bande Unitaire</div>
+          <div class="stars">★★★★☆</div>
+          <div class="prod-desc">Bande blanchissante unitaire Crest 3D, résultats visibles dès la 1ère utilisation</div>
+          <div class="prod-footer">
+            <div class="prod-price">35 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(7)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="dentaire">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/1517853-894__1_dmifkw" alt="Crest 3D Whitestrips Boîte Complète" />
+          <div class="prod-badge">Meilleur Prix</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Crest</div>
+          <div class="prod-cat">Soin Dentaire</div>
+          <div class="prod-name">Crest 3D Whitestrips — Boîte Complète</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Boîte complète de bandes blanchissantes Crest 3D, traitement complet 14 jours</div>
+          <div class="prod-footer">
+            <div class="prod-price">320 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(8)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== IBRAQ ===== -->
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/705d60f0-8546-446a-9f64-3022b319a215-1000x1000-k4OmA6lSeBUf9gnv4s7pJj0E08lqgkSJat8yCKEF_hbogus" alt="Musc Ibraq Grenade" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 100ml</div>
+          <div class="prod-name">مسك عبق الرمان — Musc Grenade</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Musc aux notes de grenade, fruité et envoûtant. 100ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">180 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(10)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/4d87efc9-5d02-4a78-bedc-1ae0b23327d7-1000x1000-wmmNjxzVMLe8EtPFOrVxn1EUfWoEIuSFZ0RdSHc4_wz2hnt" alt="Musc Powder Ibraq" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 100ml</div>
+          <div class="prod-name">مسك باودر — Musc Powder</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Musc poudré délicat, doux et raffiné. 100ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">180 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(11)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/428d9713-04d6-43a8-9838-3f9191ea43f6-1000x1000-vX3RWeTJlnP60eLMouSSGhm3wi2dinTUNpmK8kVl_wfnaeu" alt="Musc Ibraq Spécial" />
+          <div class="prod-badge">Exclusif</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 100ml</div>
+          <div class="prod-name">مسك إبراق الخاص — Musc Ibraq Spécial</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Le musc signature Ibraq, formule exclusive aux notes boisées et orientales. 100ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">200 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(12)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/1869c38d-1be0-45a2-8d50-d32ae7a0db55-1000x1000-YWGDcpMosnmUEE8LGZ1IsfE8MDRtaJ0Kvi6tRH5M_why5vr" alt="Musc Blueberry Ibraq" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 100ml</div>
+          <div class="prod-name">مسك التوت الأزرق — Musc Blueberry</div>
+          <div class="stars">★★★★☆</div>
+          <div class="prod-desc">Musc fruité aux notes de myrtille, frais et gourmand. 100ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">175 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(13)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/8fd92839-2cf7-4f5f-bc8e-9f35d6508d8e-1000x1000-m4HOobObHyxBUlCCjxn7xAMrT96oHZvHPvObcl9v_r3unzg" alt="Musc Sucré Ibraq" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 100ml</div>
+          <div class="prod-name">مسك السكر — Musc Sucré</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Musc gourmand aux notes sucrées et vanillées, enveloppant. 100ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">175 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(14)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- IBRAQ 20ml -->
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/428d9713-04d6-43a8-9838-3f9191ea43f6-1000x1000-vX3RWeTJlnP60eLMouSSGhm3wi2dinTUNpmK8kVl-1_qzdp2z" alt="Musc Spécial 20ml" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 20ml</div>
+          <div class="prod-name">مسك الخاص — Musc Spécial</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Miniature du musc signature Ibraq, format voyage. 20ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">55 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(15)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/4d87efc9-5d02-4a78-bedc-1ae0b23327d7-1000x1000-wmmNjxzVMLe8EtPFOrVxn1EUfWoEIuSFZ0RdSHc4-1_unxu2i" alt="Musc Poudré 20ml" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 20ml</div>
+          <div class="prod-name">مسك الباودر — Musc Poudré</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Miniature du musc poudré Ibraq, format voyage. 20ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">55 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(16)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/1869c38d-1be0-45a2-8d50-d32ae7a0db55-1000x1000-YWGDcpMosnmUEE8LGZ1IsfE8MDRtaJ0Kvi6tRH5M_why5vr" alt="Musc Blueberry 20ml" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 20ml</div>
+          <div class="prod-name">مسك التوت الأزرق — Musc Blueberry</div>
+          <div class="stars">★★★★☆</div>
+          <div class="prod-desc">Miniature du musc blueberry Ibraq, format voyage. 20ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">50 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(17)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/705d60f0-8546-446a-9f64-3022b319a215-1000x1000-k4OmA6lSeBUf9gnv4s7pJj0E08lqgkSJat8yCKEF-1_v4kvaw" alt="Musc Grenade 20ml" />
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Musc — 20ml</div>
+          <div class="prod-name">مسك عبق الرمان — Musc Grenade</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">Miniature du musc grenade Ibraq, format voyage. 20ml</div>
+          <div class="prod-footer">
+            <div class="prod-price">50 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(18)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coffret Ibraq -->
+      <div class="product-card" data-cat="ibraq parfum">
+        <div class="product-image">
+          <img src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/4e361960-0fbc-45d5-98fd-112f1c1df348-1000x1000-5EKD9V5MVkCxp32F5YrQJUXck4AY50sc9PuMP2aN_zqzqqp" alt="Coffret Complet Musc Ibraq" />
+          <div class="prod-badge">Coffret</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-brand">Ibraq</div>
+          <div class="prod-cat">Coffret — 12 Miniatures</div>
+          <div class="prod-name">Coffret Complet Musc Ibraq</div>
+          <div class="stars">★★★★★</div>
+          <div class="prod-desc">12 miniatures 20ml — toute la gamme Ibraq dans un écrin cadeau précieux</div>
+          <div class="prod-footer">
+            <div class="prod-price">1800 <span>Dhs</span></div>
+            <button class="add-to-cart" onclick="addToCart(30)">+ Panier</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- end page-products -->
+
+<!-- ========== OFFRES PAGE ========== -->
+<div class="page" id="page-offres-page">
+  <div class="products-hero">
+    <span class="section-tag">✦ Exclusivités</span>
+    <h1 class="section-title" style="font-size:2.2rem;">Offres & <em>Coffrets</em></h1>
+    <div class="section-line"></div>
+    <p style="font-size:0.8rem;color:var(--text-light);margin-top:14px;font-weight:300;">Des offres pensées pour vous faire plaisir ou offrir un cadeau inoubliable</p>
+  </div>
+  <div class="section">
+    <div class="offres-grid">
+      <div class="offre-card">
+        <div class="offre-ribbon">Exclusif</div>
+        <span class="offre-badge">Coffret Luxe</span>
+        <img class="offre-img" src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/4e361960-0fbc-45d5-98fd-112f1c1df348-1000x1000-5EKD9V5MVkCxp32F5YrQJUXck4AY50sc9PuMP2aN_zqzqqp" alt="Coffret Musc Ibraq" />
+        <div class="offre-name">Coffret Musc Ibraq — 12 Miniatures</div>
+        <div class="offre-desc">12 miniatures 20ml — tous les parfums Ibraq dans un écrin précieux</div>
+        <div class="offre-price">1800 <span style="font-size:0.75rem">Dhs</span></div>
+        <div style="display:flex;gap:10px;margin-top:auto;padding-top:16px;justify-content:center;">
+          <button class="btn-primary" style="font-size:0.62rem;padding:11px 18px;" onclick="addToCart(30)">+ Panier</button>
+        </div>
+      </div>
+      <div class="offre-card">
+        <div class="offre-ribbon">Bestseller</div>
+        <span class="offre-badge">Parfum VS</span>
+        <img class="offre-img" src="https://res.cloudinary.com/dsit1vh4p/image/upload/v1777637304/1777593813803_rovhgv.png" alt="Into The Night" />
+        <div class="offre-name">Into The Night — Fine Fragrance Mist</div>
+        <div class="offre-desc">Brume parfumée Victoria's Secret — senteur envoûtante. 250ml</div>
+        <div class="offre-price">220 <span style="font-size:0.75rem">Dhs</span></div>
+        <div style="display:flex;gap:10px;margin-top:auto;padding-top:16px;justify-content:center;">
+          <button class="btn-primary" style="font-size:0.62rem;padding:11px 18px;" onclick="addToCart(2)">+ Panier</button>
+        </div>
+      </div>
+      <div class="offre-card">
+        <div class="offre-ribbon">Soin Premium</div>
+        <span class="offre-badge">Gommage Dove</span>
+        <img class="offre-img" src="https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/file_00000000d71871fda43c2cb844bf66f3_l9n3fd" alt="Dove Himalayan Salt" />
+        <div class="offre-name">Himalayan Salt & Rose Oil Body Scrub</div>
+        <div class="offre-desc">Gommage au sel de l'Himalaya et à l'huile de rose. 298g</div>
+        <div class="offre-price">155 <span style="font-size:0.75rem">Dhs</span></div>
+        <div style="display:flex;gap:10px;margin-top:auto;padding-top:16px;justify-content:center;">
+          <button class="btn-primary" style="font-size:0.62rem;padding:11px 18px;" onclick="addToCart(6)">+ Panier</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end page-offres-page -->
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeCheckout()">✕</button>
+    <div id="checkoutForm">
+      <div class="modal-title">Passer commande</div>
+      <div class="modal-sub">Remplissez vos informations pour finaliser</div>
+      <div class="recap-box">
+        <div class="recap-title">✦ Récapitulatif</div>
+        <div id="recapItems"></div>
+        <div class="recap-total-row">
+          <span class="recap-total-label">Total</span>
+          <span class="recap-total-amt" id="recapTotal"></span>
+        </div>
+      </div>
+      <div class="form-sec">
+        <div class="form-sec-title">✦ Vos Informations</div>
+        <div class="form-row2">
+          <div class="form-grp"><label>Prénom <span class="req">*</span></label><input type="text" id="fPrenom" placeholder="Prénom" /></div>
+          <div class="form-grp"><label>Nom <span class="req">*</span></label><input type="text" id="fNom" placeholder="Nom" /></div>
+        </div>
+        <div class="form-row2">
+          <div class="form-grp"><label>Téléphone <span class="req">*</span></label><input type="tel" id="fTel" placeholder="06 XX XX XX XX" /></div>
+          <div class="form-grp"><label>Ville <span class="req">*</span></label><input type="text" id="fVille" placeholder="Kénitra, Rabat…" /></div>
+        </div>
+        <div class="form-row2 full">
+          <div class="form-grp"><label>Adresse complète <span class="req">*</span></label><input type="text" id="fAdresse" placeholder="N° rue, quartier, immeuble…" /></div>
+        </div>
+        <div class="form-row2 full">
+          <div class="form-grp"><label>Notes (optionnel)</label><textarea id="fNote" placeholder="Instructions de livraison…"></textarea></div>
+        </div>
+      </div>
+      <div class="form-sec">
+        <div class="form-sec-title">✦ Paiement</div>
+        <div class="pay-box">
+          <span style="font-size:1.4rem">💵</span>
+          <div><div class="pay-name">Paiement à la livraison</div><div class="pay-desc">Payez en cash à la réception de votre colis</div></div>
+        </div>
+      </div>
+      <button class="submit-btn" onclick="submitOrder()">Confirmer ma commande →</button>
+    </div>
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Commande Confirmée !</div>
+      <div class="success-msg">Merci pour votre commande.<br>Notre équipe vous contactera sous peu pour confirmer la livraison.</div>
+      <button class="btn-primary" onclick="closeCheckout()">Continuer mes achats</button>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a class="wa-btn" href="https://wa.me/212600000000" target="_blank">💬</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="nav-logo" style="color:white;cursor:default;">SHA<span>H</span>LY</div>
+      <p class="footer-desc">Votre destination beauté à Kénitra. Victoria's Secret, Dove, Crest, Ibraq — cosmétiques authentiques et soins premium.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#">f</a>
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">ig</a>
+        <a class="social-btn" href="#">tk</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Collections</div>
+      <ul class="footer-links">
+        <li><a onclick="showPage('products','parfum')">Parfums & Brumes</a></li>
+        <li><a onclick="showPage('products','ibraq')">Ibraq Musc</a></li>
+        <li><a onclick="showPage('products','corps')">Soins Corps Dove</a></li>
+        <li><a onclick="showPage('products','dentaire')">Crest 3D</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Informations</div>
+      <ul class="footer-links">
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Livraison</a></li>
+        <li><a href="#">Retours</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <ul class="footer-links">
+        <li><a href="#">📍 Yasmine Mall, Kénitra</a></li>
+        <li><a href="#">⏰ 11h–23h (Ven. 15h–23h)</a></li>
+        <li><a href="#">📞 06 XX XX XX XX</a></li>
+        <li><a href="#">✉ contact@shahly.ma</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 SHAHLY — Tous droits réservés</span>
+    <span class="footer-copy">Beauté Authentique · Kénitra</span>
+  </div>
+</footer>
+
+<script>
+const CDN = 'https://res.cloudinary.com/dsit1vh4p/image/upload/f_auto,q_auto/';
+
+const products = {
+  1: {name:'Bare Vanilla Fragrance Mist',price:199,img:CDN+'112592038527_OM_F_u9h7zq'},
+  2: {name:'Into The Night Fine Fragrance Mist',price:220,img:CDN+'1777593813803_rovhgv'},
+  3: {name:'Dove White Peach & Crushed Rice Scrub',price:140,img:CDN+'file_00000000c1d471fd844ee606aefbfc8a_kzo9kk'},
+  5: {name:'Dove Brown Sugar & Coconut Butter Scrub',price:150,img:CDN+'130026583_vdrkxz'},
+  6: {name:'Dove Himalayan Salt & Rose Oil Scrub',price:155,img:CDN+'file_00000000d71871fda43c2cb844bf66f3_l9n3fd'},
+  7: {name:'Crest 3D Whitestrips — Bande Unitaire',price:35,img:CDN+'1517853-894__1_dmifkw'},
+  8: {name:'Crest 3D Whitestrips — Boîte Complète',price:320,img:CDN+'1517853-894__1_dmifkw'},
+  10:{name:'Musc Grenade Ibraq 100ml',price:180,img:CDN+'705d60f0-8546-446a-9f64-3022b319a215-1000x1000-k4OmA6lSeBUf9gnv4s7pJj0E08lqgkSJat8yCKEF_hbogus'},
+  11:{name:'Musc Powder Ibraq 100ml',price:180,img:CDN+'4d87efc9-5d02-4a78-bedc-1ae0b23327d7-1000x1000-wmmNjxzVMLe8EtPFOrVxn1EUfWoEIuSFZ0RdSHc4_wz2hnt'},
+  12:{name:'Musc Ibraq Spécial 100ml',price:200,img:CDN+'428d9713-04d6-43a8-9838-3f9191ea43f6-1000x1000-vX3RWeTJlnP60eLMouSSGhm3wi2dinTUNpmK8kVl_wfnaeu'},
+  13:{name:'Musc Blueberry Ibraq 100ml',price:175,img:CDN+'1869c38d-1be0-45a2-8d50-d32ae7a0db55-1000x1000-YWGDcpMosnmUEE8LGZ1IsfE8MDRtaJ0Kvi6tRH5M_why5vr'},
+  14:{name:'Musc Sucré Ibraq 100ml',price:175,img:CDN+'8fd92839-2cf7-4f5f-bc8e-9f35d6508d8e-1000x1000-m4HOobObHyxBUlCCjxn7xAMrT96oHZvHPvObcl9v_r3unzg'},
+  15:{name:'Musc Spécial Ibraq 20ml',price:55,img:CDN+'428d9713-04d6-43a8-9838-3f9191ea43f6-1000x1000-vX3RWeTJlnP60eLMouSSGhm3wi2dinTUNpmK8kVl-1_qzdp2z'},
+  16:{name:'Musc Poudré Ibraq 20ml',price:55,img:CDN+'4d87efc9-5d02-4a78-bedc-1ae0b23327d7-1000x1000-wmmNjxzVMLe8EtPFOrVxn1EUfWoEIuSFZ0RdSHc4-1_unxu2i'},
+  17:{name:'Musc Blueberry Ibraq 20ml',price:50,img:CDN+'1869c38d-1be0-45a2-8d50-d32ae7a0db55-1000x1000-YWGDcpMosnmUEE8LGZ1IsfE8MDRtaJ0Kvi6tRH5M_why5vr'},
+  18:{name:'Musc Grenade Ibraq 20ml',price:50,img:CDN+'705d60f0-8546-446a-9f64-3022b319a215-1000x1000-k4OmA6lSeBUf9gnv4s7pJj0E08lqgkSJat8yCKEF-1_v4kvaw'},
+  30:{name:'Coffret Complet Musc Ibraq — 12 Miniatures',price:1800,img:CDN+'4e361960-0fbc-45d5-98fd-112f1c1df348-1000x1000-5EKD9V5MVkCxp32F5YrQJUXck4AY50sc9PuMP2aN_zqzqqp'},
+};
+
+let cart = [];
+let appliedPromo = null;
+const promoCodes = {'SHAHLY5':5,'BEAUTY10':10};
+
+function addToCart(id) {
+  const p = products[id]; if(!p) return;
+  const ex = cart.find(i=>i.id===id);
+  if(ex){ex.qty++;}else{cart.push({id,...p,qty:1});}
+  updateCart(); showToast();
+}
+
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function updateCart(){
+  const count=cart.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('cartCount').textContent=count;
+  const container=document.getElementById('cartItems');
+  const footer=document.getElementById('cartFooter');
+  if(!cart.length){
+    container.innerHTML='<div class="cart-empty">🛒<br><br>Votre panier est vide</div>';
+    footer.style.display='none'; return;
+  }
+  footer.style.display='block';
+  container.innerHTML=cart.map(item=>`
+    <div class="cart-item">
+      <div class="cart-item-img"><img src="${item.img}" alt="${item.name}" /></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">${item.price} Dhs</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        </div>
+      </div>
+    </div>`).join('');
+  updateTotal();
+}
+
+function changeQty(id,d){
+  const idx=cart.findIndex(i=>i.id===id); if(idx===-1) return;
+  cart[idx].qty+=d;
+  if(cart[idx].qty<=0) cart.splice(idx,1);
+  updateCart();
+}
+
+function updateTotal(){
+  let sub=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  let disc=appliedPromo?Math.round(sub*appliedPromo/100):0;
+  let total=sub-disc;
+  const pd=document.getElementById('cartPromo');
+  if(appliedPromo){pd.textContent=`✦ Remise −${appliedPromo}% appliquée (−${disc} Dhs)`;pd.style.display='block';}
+  else{pd.style.display='none';}
+  document.getElementById('cartTotal').textContent=total+' MAD';
+}
+
+function applyPromo(){
+  const code=document.getElementById('promoInput').value.trim().toUpperCase();
+  const fb=document.getElementById('promoFeedback');
+  if(promoCodes[code]){
+    appliedPromo=promoCodes[code];
+    fb.textContent=`✓ Code "${code}" appliqué ! Remise de ${appliedPromo}%`;
+    fb.className='promo-feedback promo-ok';
+  }else{
+    appliedPromo=null;
+    fb.textContent='✕ Code invalide ou expiré';
+    fb.className='promo-feedback promo-err';
+  }
+  fb.style.display='block'; updateTotal();
+}
+
+function openCart(){document.getElementById('cartSidebar').classList.add('open');document.getElementById('cartOverlay').classList.add('open');}
+function closeCart(){document.getElementById('cartSidebar').classList.remove('open');document.getElementById('cartOverlay').classList.remove('open');}
+
+function openCheckout(){
+  closeCart();
+  const modal=document.getElementById('checkoutModal');
+  let sub=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  let disc=appliedPromo?Math.round(sub*appliedPromo/100):0;
+  let total=sub-disc;
+  document.getElementById('recapItems').innerHTML=cart.map(i=>`<div class="recap-row"><span>${i.name} x${i.qty}</span><b>${i.price*i.qty} Dhs</b></div>`).join('')+(disc?`<div class="recap-row"><span>Remise −${appliedPromo}%</span><b style="color:green">−${disc} Dhs</b></div>`:'');
+  document.getElementById('recapTotal').textContent=total+' Dhs';
+  document.getElementById('successScreen').style.display='none';
+  document.getElementById('checkoutForm').style.display='block';
+  modal.classList.add('open');
+}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open');}
+
+function submitOrder(){
+  const f=v=>document.getElementById(v).value.trim();
+  if(!f('fPrenom')||!f('fNom')||!f('fTel')||!f('fVille')||!f('fAdresse')){alert('Veuillez remplir tous les champs obligatoires (*)');return;}
+  document.getElementById('checkoutForm').style.display='none';
+  document.getElementById('successScreen').style.display='block';
+  cart=[]; appliedPromo=null; updateCart();
+}
+
+function showPage(page,filter){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const target=document.getElementById('page-'+page);
+  if(target){target.classList.add('active');window.scrollTo(0,0);}
+  const navLink=document.getElementById('nav-'+page);
+  if(navLink) navLink.classList.add('active');
+  if(filter) filterProducts(filter,null);
+}
+
+function filterProducts(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card=>{
+    const cats=card.dataset.cat||'';
+    card.style.display=(cat==='all'||cats.includes(cat))?'flex':'none';
+  });
+}
+
+function closeBanner(){document.getElementById('annBanner').style.display='none';}
+
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  const banner=document.getElementById('annBanner');
+  nav.style.top=(banner&&banner.style.display!=='none'?banner.offsetHeight:0)+'px';
+});
+(function(){
+  const banner=document.getElementById('annBanner');
+  const nav=document.getElementById('mainNav');
+  nav.style.top=(banner?banner.offsetHeight:0)+'px';
+})();
+</script>
+</body>
+</html>
